@@ -1,0 +1,19 @@
+'test for null points in table 
+A% = 0
+B% = 15
+R% = 0
+'
+ON ERROR GOTO *CATCH_ERR
+'
+R% = LOC4(P1024) - LOC4(P1025)
+FOR I% = A% TO B% STEP 1
+   LOC4(P[I%]) = LOC4(P[I%]) - R%
+   DELAY 1000
+NEXT I%
+HALT
+'
+*CATCH_ERR:
+    IF ERR(3) THEN *KEEP   
+'
+*KEEP: 
+    RESUME NEXT
